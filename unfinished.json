@@ -1,5 +1,1 @@
-{
-  "status": "superseded",
-  "activeImplementation": "GAS teacher and student workspaces",
-  "resolution": "Prototype functions are no longer shipped in active pages; backend-owned workflow replaces local demo auth, answers and submissions."
-}
+{"status":"replaced_with_authenticated_v2","project":"1wQVOitNgu7GoCX507jioMU2JyVu1iex2qqPJNR3lKHpZDMMHcG9c2myv","workspaces":"new GAS-hosted teacher and student applications","prototypeEmptyHandlers":"removed from active application","physicalDeviceAndEmailDelivery":"requires real-device verification"}
