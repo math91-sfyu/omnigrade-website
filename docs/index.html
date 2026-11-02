@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OmniGrade 數學科線上評量系統 - 統一導航入口</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 Pro -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- KaTeX Typography -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eef8f8', 100: '#d7f0f0', 600: '#126a73', 700: '#0e535a', 800: '#0b3e43' }
+          }
+        }
+      }
+    };
+  </script>
+<script src="./deployment.js" defer></script>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col font-sans select-none antialiased">
+
+  <!-- 頂部全域品牌導覽列 -->
+  <header class="bg-slate-900 text-white h-14 flex items-center justify-between px-4 sm:px-8 border-b border-slate-800 shadow-sm sticky top-0 z-30">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-xl bg-teal-600 flex items-center justify-center text-white font-black text-sm shadow-md">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-sm tracking-tight text-white">OmniGrade Math AI</span>
+        <span class="text-[10px] bg-emerald-950 border border-emerald-700 text-emerald-300 px-2 py-0.5 rounded font-mono hidden sm:inline">
+          <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i>統一導航入口
+        </span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+      <span>國中數學智慧評量平台</span>
+    </div>
+  </header>
+
+  <!-- 主入口內容區 -->
+  <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-10">
+    <div class="w-full max-w-4xl space-y-6">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm text-center space-y-2">
+        <div class="w-14 h-14 bg-teal-700 text-white rounded-2xl mx-auto flex items-center justify-center text-2xl shadow-md">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">國中數學科智慧線上作答與閱卷系統</h1>
+        <p class="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto leading-relaxed">
+          支援選擇題秒對劃卡、填充題自然數學式排版、手寫公式轉譯、客觀題秒批與自動評語學習診斷。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- 入口 1: 教師管理工作主控台 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between space-y-5 hover:border-teal-500 hover:shadow-md transition">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-11 h-11 rounded-2xl bg-teal-50 text-teal-800 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-chalkboard-user"></i>
+              </span>
+              <span class="text-[10px] font-bold bg-teal-100 text-teal-800 px-2.5 py-0.5 rounded-full">教師管理專區</span>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900">教師工作主控台</h2>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                多頁試卷 AI 辨識導入、答案順序契約核定、雙欄獨立捲動紅筆審卷、存疑題快速過濾、全班名冊與 GAS 雲端寄信。
+              </p>
+            </div>
+            <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-3 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">教師管理帳號 / Email：</label>
+                <input type="text" id="teacherEmailInput" value="teacher@school.edu.tw" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 font-mono text-xs focus:ring-2 focus:ring-teal-500">
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-1">管理通行 PIN 碼 (預設 8888)：</label>
+                <input type="password" id="teacherPinInput" value="8888" onkeydown="if(event.key==='Enter') executeTeacherLogin()" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 font-mono text-xs focus:ring-2 focus:ring-teal-500">
+              </div>
+            </div>
+          </div>
+          <div class="space-y-2 pt-2">
+            <button type="button" onclick="executeTeacherLogin()" class="w-full py-3 bg-teal-700 hover:bg-teal-600 text-white font-extrabold rounded-2xl text-xs transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-key"></i>
+              <span>登入教師工作主控台 →</span>
+            </button>
+            <button type="button" onclick="quickTeacherDemoLogin()" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition cursor-pointer">
+              示範模式：免密碼直接進入教師端
+            </button>
+          </div>
+        </div>
+
+        <!-- 入口 2: 學生受測作答與歷程查詢 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between space-y-5 hover:border-indigo-500 hover:shadow-md transition">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-11 h-11 rounded-2xl bg-indigo-50 text-indigo-700 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-user-pen"></i>
+              </span>
+              <span class="text-[10px] font-bold bg-indigo-100 text-indigo-800 px-2.5 py-0.5 rounded-full">學生受測與歷程</span>
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-slate-900">學生線上作答與歷程查詢</h2>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                客觀題答題卡、單選塗黑劃卡、填充幾何符號鍵盤、手寫轉自然數學式、交卷自動下載單頁答案卷 PDF 備份。
+              </p>
+            </div>
+            <div class="flex bg-slate-100 p-1 rounded-xl text-xs font-bold border border-slate-200">
+              <button type="button" onclick="switchStudentTab('code')" id="tabStudentCode" class="flex-1 py-1.5 rounded-lg bg-white text-indigo-800 shadow-xs">
+                模式一：課堂測驗碼
+              </button>
+              <button type="button" onclick="switchStudentTab('token')" id="tabStudentToken" class="flex-1 py-1.5 rounded-lg text-slate-600 hover:text-slate-800">
+                模式二：專屬 Token
+              </button>
+            </div>
+            <div id="studentFormCode" class="space-y-2.5 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-0.5">課堂測驗碼 (黑板投影)：</label>
+                <input type="text" id="studentExamCode" value="MATH-115" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 font-mono uppercase font-bold text-indigo-800 focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block font-bold text-slate-700 mb-0.5">座號 (例 01)：</label>
+                  <input type="text" id="studentSeat" value="01" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 font-mono focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                  <label class="block font-bold text-slate-700 mb-0.5">學號：</label>
+                  <input type="text" id="studentId" value="S11201" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 font-mono focus:ring-2 focus:ring-indigo-500">
+                </div>
+              </div>
+              <div>
+                <label class="block font-bold text-slate-700 mb-0.5 flex items-center justify-between">
+                  <span>登入密碼 (初次預設 666)：</span>
+                  <span class="text-[10px] text-amber-700 font-normal">首次需自訂 4 碼</span>
+                </label>
+                <input type="password" id="studentPassword" value="666" placeholder="請輸入密碼 (預設666)" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5 font-mono focus:ring-2 focus:ring-indigo-500">
+              </div>
+            </div>
+            <div id="studentFormToken" class="hidden space-y-2 text-xs">
+              <div>
+                <label class="block font-bold text-slate-700 mb-0.5">個人專屬 Token 憑證：</label>
+                <input type="text" id="studentTokenInput" placeholder="TOKEN_S11201_MATH1" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 font-mono text-xs focus:ring-2 focus:ring-indigo-500">
+              </div>
+              <p class="text-[11px] text-slate-500">此為教師派卷連結攜帶的憑證，可直接解析進入。</p>
+            </div>
+          </div>
+          <div class="space-y-2 pt-2">
+            <button type="button" onclick="executeStudentEntry('exam')" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold rounded-2xl text-xs transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-pen"></i>
+              <span>開始線上作答 →</span>
+            </button>
+            <button type="button" onclick="executeStudentEntry('history')" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition flex items-center justify-center gap-1.5 cursor-pointer">
+              <i class="fa-solid fa-book-bookmark text-indigo-700"></i>
+              <span>查看本人歷史成績與批閱 PDF</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-xs text-slate-400 py-2">
+        OmniGrade Math AI © 2026 · 國中數學科客觀化評量與智慧審卷系統
+      </div>
+    </div>
+  </main>
+
+  <div id="portalToast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/95 text-white px-5 py-2.5 rounded-2xl shadow-2xl text-xs z-50 flex items-center gap-2 border border-slate-700">
+    <i class="fa-solid fa-circle-info text-amber-400" id="portalToastIcon"></i>
+    <span id="portalToastMsg">通知訊息</span>
+  </div>
+
+  <script>
+    // ==========================================
+    // 【重要設定】Google 協作平台頁面絕對網址
+    // 部署到協作平台後，請將下方網址替換為您協作平台上「教師主控台」與「學生受測端」的真實網址！
+    // ==========================================
+    const ROUTES = {
+      teacher: new URL('./teacher_console.html', location.href).href, // 請替換
+      student: new URL('./student_portal.html', location.href).href  // 請替換
+    };
+
+    function showPortalToast(msg, isSuccess = false) {
+      const toast = document.getElementById('portalToast');
+      const msgEl = document.getElementById('portalToastMsg');
+      const iconEl = document.getElementById('portalToastIcon');
+      msgEl.textContent = msg;
+      iconEl.className = isSuccess ? 'fa-solid fa-circle-check text-emerald-400' : 'fa-solid fa-circle-exclamation text-amber-400';
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 2800);
+    }
+
+    function executeTeacherLogin() {
+      const pin = document.getElementById('teacherPinInput').value.trim();
+      if (pin === '8888') {
+        sessionStorage.setItem('omnigrade_teacher_logged_in', 'true');
+        showPortalToast('登入成功，正在進入教師主控台...', true);
+        setTimeout(() => { window.location.href = ROUTES.teacher; }, 300);
+      } else {
+        showPortalToast('管理 PIN 碼錯誤！預設通行碼為 8888。');
+      }
+    }
+
+    function quickTeacherDemoLogin() {
+      sessionStorage.setItem('omnigrade_teacher_logged_in', 'true');
+      window.location.href = ROUTES.teacher;
+    }
+
+    function switchStudentTab(mode) {
+      const tabCode = document.getElementById('tabStudentCode');
+      const tabToken = document.getElementById('tabStudentToken');
+      const formCode = document.getElementById('studentFormCode');
+      const formToken = document.getElementById('studentFormToken');
+      if (mode === 'code') {
+        tabCode.className = 'flex-1 py-1.5 rounded-lg bg-white text-indigo-800 shadow-xs font-bold';
+        tabToken.className = 'flex-1 py-1.5 rounded-lg text-slate-600 hover:text-slate-800 font-medium';
+        formCode.classList.remove('hidden');
+        formToken.classList.add('hidden');
+      } else {
+        tabCode.className = 'flex-1 py-1.5 rounded-lg text-slate-600 hover:text-slate-800 font-medium';
+        tabToken.className = 'flex-1 py-1.5 rounded-lg bg-white text-indigo-800 shadow-xs font-bold';
+        formCode.classList.add('hidden');
+        formToken.classList.remove('hidden');
+      }
+    }
+
+    function executeStudentEntry(targetView) {
+      const isTokenMode = !document.getElementById('studentFormToken').classList.contains('hidden');
+      if (isTokenMode) {
+        const token = document.getElementById('studentTokenInput').value.trim();
+        if (!token) { showPortalToast('請輸入個人專屬 Token 憑證！'); return; }
+        const connector = ROUTES.student.includes('?') ? '&' : '?';
+        sessionStorage.setItem('omnigrade_entry',JSON.stringify({token}));
+        window.location.href = ROUTES.student;
+        return;
+      }
+
+      const code = document.getElementById('studentExamCode').value.trim().toUpperCase();
+      const seat = document.getElementById('studentSeat').value.trim();
+      const id = document.getElementById('studentId').value.trim();
+      const pwd = document.getElementById('studentPassword').value.trim();
+
+      if (!code || !id) { showPortalToast('請填寫完整之測驗碼與學號！'); return; }
+
+      try {
+        const stored = localStorage.getItem('omnigrade_math_db_v2');
+        if (stored) {
+          const db = JSON.parse(stored);
+          const exam = db.find(e => e.code === code) || db[0];
+          if (exam && exam.submissions && exam.submissions[id]) {
+            const sub = exam.submissions[id];
+            if (sub.password && sub.password !== pwd) {
+              showPortalToast('登入密碼不正確！若忘記請洽任課教師重設回 666。');
+              return;
+            }
+          }
+        }
+      } catch (e) { console.warn(e); }
+
+      const gasUrl = '' || '';
+      sessionStorage.setItem('omnigrade_entry',JSON.stringify({code,seat,id,pwd}));
+      const queryParams = new URLSearchParams({ code, view: targetView });
+      if (gasUrl) queryParams.set('gas', gasUrl);
+      
+      const connector = ROUTES.student.includes('?') ? '&' : '?';
+      window.location.href = ROUTES.student + connector + queryParams.toString();
+    }
+
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const gas = params.get('gas');
+      if (gas) console.info('此發布版尚未啟用雲端後端');
+    };
+  </script>
+</body>
+</html>

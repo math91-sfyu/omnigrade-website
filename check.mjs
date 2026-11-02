@@ -1,0 +1,5 @@
+import fs from 'node:fs/promises';import assert from 'node:assert/strict';
+for(let name of ['index.html','teacher_console.html','student_portal.html']){let s=await fs.readFile('docs/'+name,'utf8');assert.ok(!s.includes('YOUR_SITE_NAME'));for(let m of s.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))if(m[1].trim())new Function(m[1]);for(let m of s.matchAll(/new URL\('\.\/([^']+)'/g)){await fs.access('docs/'+m[1]);assert.equal(new URL('./'+m[1],'https://example.github.io/omnigrade-website/'+name).pathname,'/omnigrade-website/'+m[1]);}}
+new Function(await fs.readFile('docs/deployment.js','utf8'));
+const secrets=(await fs.readFile('../KEY.txt','utf8').catch(()=>'')).trim().split(/\r?\n/).map(x=>x.trim()).filter(Boolean);for(let file of ['docs/index.html','docs/teacher_console.html','docs/student_portal.html','docs/deployment.js','backend/Code.gs','README.md']){let text=await fs.readFile(file,'utf8');for(let key of secrets)assert.ok(!text.includes(key),'Secret found in '+file);assert.ok(!/AIza[\w-]{25,}/.test(text));}
+console.log('PASS: inline JavaScript, relative routes under project path, local assets, no provided API keys.');

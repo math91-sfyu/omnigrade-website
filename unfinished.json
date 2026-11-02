@@ -1,0 +1,28 @@
+{
+  "index.html": [],
+  "teacher_console.html": [
+    "setupConsoleView",
+    "setConsoleSplitMode",
+    "undoTeacherMark",
+    "clearCurrentPageTeacherMarks",
+    "toggleContrastEnhance",
+    "syncSubmissionsFromCloud",
+    "publishAllExamResults",
+    "openEmailModalForCurrentStudent",
+    "closeEmailModal",
+    "loadDefaultDemoExam",
+    "openImportExamModal",
+    "switchConsoleStudent",
+    "batchConfirmCurrentSubmission",
+    "finalizeAndReleaseCurrentStudent",
+    "setConsoleCanvasZoom",
+    "filterQuestionPills",
+    "exportConfirmedGradedPaperPdf",
+    "closeImportExamModal",
+    "closeDeleteExamModal",
+    "saveApiConfig",
+    "sendViaWebmailDirect",
+    "sendViaGasCloudApi"
+  ],
+  "student_portal.html": []
+}
